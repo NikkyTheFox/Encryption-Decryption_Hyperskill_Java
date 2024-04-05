@@ -1,0 +1,51 @@
+# Project exclude paths
+/.gradle/
+/Encryption-Decryption (Java)/task/build/
+/Encryption-Decryption (Java)/task/out/
+/Encryption-Decryption (Java)/task/out/production/classes/
+/Topics/Adding annotations/Overriding makeSound() method in Cat and Dog subclasses/out/
+/Topics/Adding annotations/Overriding makeSound() method in Cat and Dog subclasses/out/production/classes/
+/Topics/Arrays as parameters/Finding common scores in two sets/out/
+/Topics/Arrays as parameters/Finding common scores in two sets/out/production/classes/
+/Topics/Command-line arguments/Parameters and their values/out/
+/Topics/Command-line arguments/Parameters and their values/out/production/classes/
+/Topics/Declaring methods/Reversing an integer and removing leading zeros/out/
+/Topics/Declaring methods/Reversing an integer and removing leading zeros/out/production/classes/
+/Topics/Declaring methods/Syntactically correct declarations/out/
+/Topics/Declaring methods/Syntactically correct declarations/out/production/classes/
+/Topics/Declaring methods/The elements of a method/out/
+/Topics/Declaring methods/The elements of a method/out/production/classes/
+/Topics/Declaring methods/Theory/out/
+/Topics/Declaring methods/Theory/out/production/classes/
+/Topics/Declaring methods/Vowel or not/out/
+/Topics/Declaring methods/Vowel or not/out/production/classes/
+/Topics/Factory method/Burger store/out/
+/Topics/Factory method/Burger store/out/production/classes/
+/Topics/Multiple conditions  switch/Creating a weekday converter for calendar app/out/
+/Topics/Multiple conditions  switch/Creating a weekday converter for calendar app/out/production/classes/
+/Topics/Multiple conditions  switch/Day of the week from an integer/out/
+/Topics/Multiple conditions  switch/Day of the week from an integer/out/production/classes/
+/Topics/Multiple conditions  switch/Decoding traffic signal colors from input codes/out/
+/Topics/Multiple conditions  switch/Decoding traffic signal colors from input codes/out/production/classes/
+/Topics/Multiple conditions  switch/Removing breaks/out/
+/Topics/Multiple conditions  switch/Removing breaks/out/production/classes/
+/Topics/Multiple conditions  switch/Rewriting code using switch/out/
+/Topics/Multiple conditions  switch/Rewriting code using switch/out/production/classes/
+/Topics/Multiple conditions  switch/Statements/out/
+/Topics/Multiple conditions  switch/Statements/out/production/classes/
+/Topics/Multiple conditions  switch/Theory/out/
+/Topics/Multiple conditions  switch/Theory/out/production/classes/
+/Topics/Multiple constructors/Creating a circle with radius and area calculations/out/
+/Topics/Multiple constructors/Creating a circle with radius and area calculations/out/production/classes/
+/Topics/Objects and their properties/Calculating areas using Rectangle class/out/
+/Topics/Objects and their properties/Calculating areas using Rectangle class/out/production/classes/
+/Topics/One-line condition with ternary operator/Determining if an integer is odd or even/out/
+/Topics/One-line condition with ternary operator/Determining if an integer is odd or even/out/production/classes/
+/Topics/One-line condition with ternary operator/Find the maximum of two numbers/out/
+/Topics/One-line condition with ternary operator/Find the maximum of two numbers/out/production/classes/
+/Topics/One-line condition with ternary operator/Theory/out/
+/Topics/One-line condition with ternary operator/Theory/out/production/classes/
+/Topics/Processing strings/Finding the longest word in a sentence/out/
+/Topics/Processing strings/Finding the longest word in a sentence/out/production/classes/
+/Topics/Static members/Time constants/out/
+/Topics/Static members/Time constants/out/production/classes/
