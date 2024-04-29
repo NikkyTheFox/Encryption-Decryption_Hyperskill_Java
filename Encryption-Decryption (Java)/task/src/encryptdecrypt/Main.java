@@ -9,24 +9,39 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class Main {
+class Constants {
+    static final int UPPERCASE = 2;
+
+    static final int LOWERCASE = 1;
 
     static final int ALPHABET_LENGTH = 26;
+
     static final int INT_a = 97;
+
     static final int INT_z = 122;
+
     static int INT_A = 65;
+
     static final int INT_Z = 90;
+}
+
+public class Main {
 
     static String mode = "end";
+
     static String key = "0";
+
     static String data = "";
+
     static String in = "";
+
     static String out = "";
+
     static String alg = "shift";
 
     public static void main(String[] args) {
         loadArguments(args);
-        process();
+        runApplication();
     }
 
     public static void loadArguments(String[] args) {
@@ -63,55 +78,65 @@ public class Main {
         }
     }
 
-    public static void process() {
-        String message2;
-        ArrayList<Character> characterArrayList = preprocess(data);
+    public static void runApplication() {
+        String message;
+        ArrayList<Character> characterArrayList = preprocessMessage(data);
         switch (mode) {
             case "enc":
-                message2 = encrypt(characterArrayList);
+                message = encryptMessage(characterArrayList);
                 break;
             case "dec":
-                message2 = decrypt(characterArrayList);
+                message = decryptMessage(characterArrayList);
                 break;
             default:
                 return;
         }
-        print(message2);
+        printMessage(message);
     }
 
-    public static ArrayList<Character> preprocess(String data) {
+    public static ArrayList<Character> preprocessMessage(String data) {
         char[] messageArray = data.toCharArray();
         Stream<Character> myCharStream = IntStream.range(0, messageArray.length).mapToObj( i -> messageArray[i]);
         return myCharStream.collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static String encrypt(ArrayList<Character> characterArrayList) {
+    public static String encryptMessage(ArrayList<Character> characterArrayList) {
         StringBuilder encryptedMessage = new StringBuilder();
         characterArrayList.forEach( (character -> {
             char newChar;
             if (Objects.equals(alg, "shift")) {
                 int alphabet = checkAlphabet(character);
                 switch (alphabet) {
-                    case 1:
-                        // lowercase
-                        newChar = (char) (INT_a + ((int) character + Integer.parseInt(key) - INT_a) % ALPHABET_LENGTH);
+                    case Constants.LOWERCASE:
+                        newChar = encryptLowercaseCharacterWithShiftAlgorithm(character);
                         break;
-                    case 2: 
-                        // uppercase
-                        newChar = (char) (INT_A + ((int) character + Integer.parseInt(key) - INT_A) % ALPHABET_LENGTH);
+                    case Constants.UPPERCASE:
+                        newChar = encryptUppercaseCharacterWithShiftAlgorithm(character);
                         break;
                     default:
                         newChar = character;
                 }
             } else {
-                newChar = (char) (INT_a + ((int) character + Integer.parseInt(key) - INT_a));
+                newChar = encryptCharacterWithUnicodeAlgorithm(character);
             }
             encryptedMessage.append(newChar);
         }));
         return encryptedMessage.toString();
     }
 
-    public static String decrypt(ArrayList<Character> characterArrayList) {
+    public static char encryptLowercaseCharacterWithShiftAlgorithm(char character) {
+        return (char) (Constants.INT_a + ((int) character + Integer.parseInt(key) - Constants.INT_a) % Constants.ALPHABET_LENGTH);
+    }
+
+    public static char encryptUppercaseCharacterWithShiftAlgorithm(char character) {
+        return (char) (Constants.INT_A + ((int) character + Integer.parseInt(key) - Constants.INT_A) % Constants.ALPHABET_LENGTH);
+    }
+
+    public static char encryptCharacterWithUnicodeAlgorithm(char character) {
+        return (char) (Constants.INT_a + ((int) character + Integer.parseInt(key) - Constants.INT_a));
+    }
+
+    public static String decryptMessage(ArrayList<Character> characterArrayList) {
         StringBuilder encryptedMessage = new StringBuilder();
         characterArrayList.forEach( (character -> {
             char newChar;
@@ -119,34 +144,44 @@ public class Main {
                 int alphabet = checkAlphabet(character);
                 switch (alphabet) {
                     case 1:
-                        // lowercase
-                        if (((int) character - Integer.parseInt(key) - INT_a) % ALPHABET_LENGTH >= 0) {
-                            newChar = (char) (INT_a + ((int) character - Integer.parseInt(key) - INT_a) % ALPHABET_LENGTH);
-                        } else {
-                            newChar = (char) (INT_a + ((int) character - Integer.parseInt(key) - INT_a) % ALPHABET_LENGTH + ALPHABET_LENGTH);
-                        }
+                        newChar = decryptLowercaseCharacterWithShiftAlgorithm(character);
                         break;
                     case 2:
-                        // uppercase
-                        if (((int) character - Integer.parseInt(key) - INT_A) % ALPHABET_LENGTH >= 0) {
-                            newChar = (char) (INT_A + ((int) character - Integer.parseInt(key) - INT_A) % ALPHABET_LENGTH);
-                        } else {
-                            newChar = (char) (INT_A + ((int) character - Integer.parseInt(key) - INT_A) % ALPHABET_LENGTH + ALPHABET_LENGTH);
-                        }
+                        newChar = decryptUppercaseCharacterWithShiftAlgorithm(character);
                         break;
                     default:
                         newChar = character;
                 }
 
             } else {
-                newChar = (char) ((int) character - Integer.parseInt(key));
+                newChar = decryptCharacterWithUnicodeAlgorithm(character);
             }
             encryptedMessage.append(newChar);
         }));
         return encryptedMessage.toString();
     }
 
-    public static void print(String message) {
+    public static char decryptLowercaseCharacterWithShiftAlgorithm(char character) {
+        if (((int) character - Integer.parseInt(key) - Constants.INT_a) % Constants.ALPHABET_LENGTH >= 0) {
+            return (char) (Constants.INT_a + ((int) character - Integer.parseInt(key) - Constants.INT_a) % Constants.ALPHABET_LENGTH);
+        } else {
+           return (char) (Constants.INT_a + ((int) character - Integer.parseInt(key) - Constants.INT_a) % Constants.ALPHABET_LENGTH + Constants.ALPHABET_LENGTH);
+        }
+    }
+
+    public static char decryptUppercaseCharacterWithShiftAlgorithm(char character) {
+        if (((int) character - Integer.parseInt(key) - Constants.INT_A) % Constants.ALPHABET_LENGTH >= 0) {
+            return (char) (Constants.INT_A + ((int) character - Integer.parseInt(key) - Constants.INT_A) % Constants.ALPHABET_LENGTH);
+        } else {
+            return (char) (Constants.INT_A + ((int) character - Integer.parseInt(key) - Constants.INT_A) % Constants.ALPHABET_LENGTH + Constants.ALPHABET_LENGTH);
+        }
+    }
+
+    public static char decryptCharacterWithUnicodeAlgorithm(char character) {
+        return (char) ((int) character - Integer.parseInt(key));
+    }
+
+    public static void printMessage(String message) {
         if (Objects.equals(out, "")) {
             System.out.println(message);
         } else {
@@ -158,10 +193,10 @@ public class Main {
         }
     }
     public static int checkAlphabet(char a) {
-        if ((int) a >= INT_a && (int) a <= INT_z) {
+        if ((int) a >= Constants.INT_a && (int) a <= Constants.INT_z) {
             return 1;
         }
-        if ((int) a >= INT_A && (int) a <= INT_Z) {
+        if ((int) a >= Constants.INT_A && (int) a <= Constants.INT_Z) {
             return 2;
         }
         return 0;
